@@ -28,16 +28,19 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        mnuArchivo = new javax.swing.JMenu();
+        mnuEmpresa = new javax.swing.JMenu();
         itmNuevaEmpresa = new javax.swing.JMenuItem();
         itmEditarEmpresa = new javax.swing.JMenuItem();
+        mnuEmpleados = new javax.swing.JMenu();
+        itmNuevoEmpleado = new javax.swing.JMenuItem();
+        itmEditarEmpleado = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mnuArchivo.setText("Archivo");
+        mnuEmpresa.setText("Empresa");
 
         itmNuevaEmpresa.setText("Nueva Empresa");
-        mnuArchivo.add(itmNuevaEmpresa);
+        mnuEmpresa.add(itmNuevaEmpresa);
 
         itmEditarEmpresa.setText("Editar Empresa");
         itmEditarEmpresa.addActionListener(new java.awt.event.ActionListener() {
@@ -45,9 +48,19 @@ public class Principal extends javax.swing.JFrame {
                 itmEditarEmpresaActionPerformed(evt);
             }
         });
-        mnuArchivo.add(itmEditarEmpresa);
+        mnuEmpresa.add(itmEditarEmpresa);
 
-        jMenuBar1.add(mnuArchivo);
+        jMenuBar1.add(mnuEmpresa);
+
+        mnuEmpleados.setText("Empleados");
+
+        itmNuevoEmpleado.setText("Nuevo Empleado");
+        mnuEmpleados.add(itmNuevoEmpleado);
+
+        itmEditarEmpleado.setText("Editar Empleado");
+        mnuEmpleados.add(itmEditarEmpleado);
+
+        jMenuBar1.add(mnuEmpleados);
 
         setJMenuBar(jMenuBar1);
 
@@ -55,11 +68,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 966, Short.MAX_VALUE)
+            .addGap(0, 701, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGap(0, 411, Short.MAX_VALUE)
         );
 
         pack();
@@ -105,9 +118,12 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem itmEditarEmpleado;
     private javax.swing.JMenuItem itmEditarEmpresa;
     private javax.swing.JMenuItem itmNuevaEmpresa;
+    private javax.swing.JMenuItem itmNuevoEmpleado;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu mnuArchivo;
+    private javax.swing.JMenu mnuEmpleados;
+    private javax.swing.JMenu mnuEmpresa;
     // End of variables declaration//GEN-END:variables
 }

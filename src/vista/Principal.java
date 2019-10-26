@@ -6,6 +6,9 @@
 package vista;
 
 import conexion.Conexion;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,6 +75,11 @@ public class Principal extends javax.swing.JFrame {
         mnuEmpleados.add(itmEditarEmpleado);
 
         itmListaEmpleados.setText("Empleados Guardados");
+        itmListaEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmListaEmpleadosActionPerformed(evt);
+            }
+        });
         mnuEmpleados.add(itmListaEmpleados);
 
         jMenuBar1.add(mnuEmpleados);
@@ -97,9 +105,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_itmEditarEmpresaActionPerformed
 
     private void itmListaEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListaEmpresasActionPerformed
-        ListarEmpleados le = new ListarEmpleados();
-        le.setVisible(true);
+        
     }//GEN-LAST:event_itmListaEmpresasActionPerformed
+
+    private void itmListaEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListaEmpleadosActionPerformed
+        try {
+            ListarEmpleados le = new ListarEmpleados();
+            le.setVisible(true);
+        } catch (SQLException ex) {
+            System.err.println("Fallo al crear ventana " + ex.getMessage());
+        }
+    }//GEN-LAST:event_itmListaEmpleadosActionPerformed
 
     /**
      * @param args the command line arguments

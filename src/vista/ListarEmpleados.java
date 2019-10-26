@@ -6,11 +6,19 @@
 package vista;
 
 import conexion.Conexion;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import modelo.Empleado;
 
 /**
@@ -21,56 +29,79 @@ public class ListarEmpleados extends javax.swing.JFrame {
 
     private Map<Integer, Empleado> mapEmpleados=new HashMap<>();
     //Empleado empleados = new Empleado();
-    //Conexion conn = new Conexion(); TODO: QUIERO PONER EN UNA CLASE A PARTE LA CONEXION Y LLAMARLA CUANDO YO QUIERA PARA NO REPETIR CODIGO
+    //Conexion conn = new Conexion(); //TODO: QUIERO PONER EN UNA CLASE A PARTE LA CONEXION Y LLAMARLA CUANDO YO QUIERA PARA NO REPETIR CODIGO
+    Connection conn;
+    String nombresTabla[]={"Nombre","Apellido 1","Apellido 2","DNI","NAF","E-mail","Telefono","Contrato"};
+    DefaultTableModel dtm;
     
-    public ListarEmpleados() {
+    public ListarEmpleados() throws SQLException {
+        
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        cargarEmpleados();
+        mostrarEmpleados();
         
     }
     
     private void mostrarEmpleados(){
+        //int j=0;
+        dtm=new DefaultTableModel(nombresTabla, mapEmpleados.size());
+        Empleado[] filas=new Empleado[mapEmpleados.size()];
+        for(int i=0;i<mapEmpleados.size();i++){
+            System.out.println("hola");
+            filas[i]= new Empleado(mapEmpleados.get(i).getNombre(),
+                    mapEmpleados.get(i).getApellido1(),mapEmpleados.get(i).getApellido2(),
+                    mapEmpleados.get(i).getDni(),mapEmpleados.get(i).getNaf(),
+                    mapEmpleados.get(i).getEmail(),mapEmpleados.get(i).getTelefono(),
+                    mapEmpleados.get(i).getTipoContrato());
+            
+        }
+        dtm.addRow(filas);
+        tblEmpleados.setModel(dtm);
+        
         
     }
     
-    /*private void cargarEmpleados(){
-        try (PreparedStatement empleados = conn.prepareStatement("select nombre,apellido1,apellido2,dni,telefono from empleados");) {
+    private void cargarEmpleados() throws SQLException{
+        this.conn = DriverManager.getConnection("jdbc:mysql://localhost/controlhorario?autoReconnect=true&useSSL=false", "root", "1234");
+        try (PreparedStatement empleados = conn.prepareStatement("select cod_empleado,nombre,apellido1,apellido2,dni,naf,email,telefono,tipo_contrato from empleados");) {
             ResultSet rs = empleados.executeQuery();
             while (rs.next()) {
-                
+                mapEmpleados.put(rs.getInt("cod_empleado"), new Empleado(rs.getString("nombre"),
+                        rs.getString("apellido1"),rs.getString("apellido2"),rs.getString("dni"),
+                        rs.getString("naf"),rs.getString("email"),rs.getLong("telefono"),
+                        rs.getInt("tipo_contrato")));
             }
 
         } catch (SQLException ex) {
-            System.err.println("Fallo en Obtener Datos " + ex.getMessage());
+            System.err.println("Fallo al Obtener Datos " + ex.getMessage());
         }
-    }*/
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblEmpleados = new javax.swing.JTable();
 
-        jList1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane2.setViewportView(tblEmpleados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(331, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -106,13 +137,17 @@ public class ListarEmpleados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarEmpleados().setVisible(true);
+                try {
+                    new ListarEmpleados().setVisible(true);
+                } catch (SQLException ex) {
+                    System.err.println("Fallo al Conectar a la BD " + ex.getMessage());
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblEmpleados;
     // End of variables declaration//GEN-END:variables
 }

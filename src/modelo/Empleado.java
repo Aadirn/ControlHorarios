@@ -13,18 +13,20 @@ import java.util.Objects;
  */
 public class Empleado {
     
-    private int codEmpleado;
+    //private int codEmpleado;
     private String dni;
     private String nombre;
     private String apellido1;
     private String apellido2;
     private String naf;
     private String email;
-    private int telefono;
+    private long telefono;
     private int tipoContrato;
+    
+    
 
-    public Empleado(int codEmpleado, String dni, String nombre, String apellido1, String apellido2, String naf, String email, int telefono, int tipoContrato) {
-        this.codEmpleado = codEmpleado;
+    public Empleado( String nombre, String apellido1, String apellido2, String dni,String naf, String email, long telefono, int tipoContrato) {
+        
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -36,14 +38,6 @@ public class Empleado {
     }
 
     public Empleado() {
-    }
-
-    public int getCodEmpleado() {
-        return codEmpleado;
-    }
-
-    public void setCodEmpleado(int codEmpleado) {
-        this.codEmpleado = codEmpleado;
     }
 
     public String getDni() {
@@ -94,7 +88,7 @@ public class Empleado {
         this.email = email;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
@@ -128,9 +122,6 @@ public class Empleado {
             return false;
         }
         final Empleado other = (Empleado) obj;
-        if (this.codEmpleado != other.codEmpleado) {
-            return false;
-        }
         if (this.telefono != other.telefono) {
             return false;
         }
@@ -152,16 +143,18 @@ public class Empleado {
         if (!Objects.equals(this.naf, other.naf)) {
             return false;
         }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.email, other.email);
     }
 
     @Override
     public String toString() {
-        return "Empleado{" + "codEmpleado=" + codEmpleado + ", dni=" + dni + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", naf=" + naf + ", email=" + email + ", telefono=" + telefono + ", tipoContrato=" + tipoContrato + '}';
+        return nombre+", "+apellido1+", "+apellido2+", "+dni+", "+naf+", "+email+", "+telefono+", "+tipoContrato;
     } //TODO: Dependiendo de la necesidad que haya en el programa modificar el toString
+    
+    public String[] toArray(){
+        String[] array={this.nombre,this.apellido1,this.apellido2,this.dni,this.naf,this.email,String.valueOf(this.telefono),String.valueOf(this.tipoContrato)};
+        return array;
+    }
     
 }
 

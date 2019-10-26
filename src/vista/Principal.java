@@ -5,17 +5,18 @@
  */
 package vista;
 
+import conexion.Conexion;
+
 /**
  *
  * @author VSPC-ETERNALSTORM2V5
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
+    
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,9 +32,11 @@ public class Principal extends javax.swing.JFrame {
         mnuEmpresa = new javax.swing.JMenu();
         itmNuevaEmpresa = new javax.swing.JMenuItem();
         itmEditarEmpresa = new javax.swing.JMenuItem();
+        itmListaEmpresas = new javax.swing.JMenuItem();
         mnuEmpleados = new javax.swing.JMenu();
         itmNuevoEmpleado = new javax.swing.JMenuItem();
         itmEditarEmpleado = new javax.swing.JMenuItem();
+        itmListaEmpleados = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +53,14 @@ public class Principal extends javax.swing.JFrame {
         });
         mnuEmpresa.add(itmEditarEmpresa);
 
+        itmListaEmpresas.setText("Empresas Guardadas");
+        itmListaEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmListaEmpresasActionPerformed(evt);
+            }
+        });
+        mnuEmpresa.add(itmListaEmpresas);
+
         jMenuBar1.add(mnuEmpresa);
 
         mnuEmpleados.setText("Empleados");
@@ -60,6 +71,9 @@ public class Principal extends javax.swing.JFrame {
         itmEditarEmpleado.setText("Editar Empleado");
         mnuEmpleados.add(itmEditarEmpleado);
 
+        itmListaEmpleados.setText("Empleados Guardados");
+        mnuEmpleados.add(itmListaEmpleados);
+
         jMenuBar1.add(mnuEmpleados);
 
         setJMenuBar(jMenuBar1);
@@ -68,11 +82,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 701, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
         );
 
         pack();
@@ -81,6 +95,11 @@ public class Principal extends javax.swing.JFrame {
     private void itmEditarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmEditarEmpresaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_itmEditarEmpresaActionPerformed
+
+    private void itmListaEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmListaEmpresasActionPerformed
+        ListarEmpleados le = new ListarEmpleados();
+        le.setVisible(true);
+    }//GEN-LAST:event_itmListaEmpresasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +139,8 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itmEditarEmpleado;
     private javax.swing.JMenuItem itmEditarEmpresa;
+    private javax.swing.JMenuItem itmListaEmpleados;
+    private javax.swing.JMenuItem itmListaEmpresas;
     private javax.swing.JMenuItem itmNuevaEmpresa;
     private javax.swing.JMenuItem itmNuevoEmpleado;
     private javax.swing.JMenuBar jMenuBar1;

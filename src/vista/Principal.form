@@ -22,6 +22,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmEditarEmpresaActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itmListaEmpresas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Empresas Guardadas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmListaEmpresasActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mnuEmpleados">
@@ -37,6 +45,11 @@
             <MenuItem class="javax.swing.JMenuItem" name="itmEditarEmpleado">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar Empleado"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itmListaEmpleados">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Empleados Guardados"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -67,12 +80,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="701" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="511" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="411" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="349" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
